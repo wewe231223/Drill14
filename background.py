@@ -9,14 +9,31 @@ class FixedBackground:
     def __init__(self):
         self.image = load_image('futsal_court.png')
         # fill here
+
+
+        # Get canvas width and height
+        self.cw = pico2d.get_canvas_width()
+        self.ch = pico2d.get_canvas_height()
+
+
+        self.width = self.image.w
+        self.height = self.image.h
+
+
+
         pass
 
     def draw(self):
         # fill here
+        self.image.clip_draw_to_origin(self.window_left, self.window_bottom, self.cw, self.ch, 0, 0)
+
         pass
 
     def update(self):
         # fill here
+        self.window_left = pico2d.clamp(0,int(server.boy.x) - self.cw // 2, self.width - self.cw - 1)
+        self.window_bottom = pico2d.clamp(0,int(server.boy.y) - self.ch // 2, self.height - self.ch - 1)
+
         pass
 
     def handle_event(self, event):
