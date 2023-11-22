@@ -8,6 +8,7 @@ import game_world
 
 import server
 from boy import Boy
+from ball import Ball
 
 # fill here
 from background import TileBackground as Background
@@ -33,8 +34,16 @@ def init():
     server.background = Background()
     server.boy = Boy()
 
+    balls = [ Ball() for _ in range(100)]
+    game_world.add_objects(balls,1)
     game_world.add_object(server.background,0)
     game_world.add_object(server.boy,1)
+
+    game_world.add_collision_pair("Boy : Ball",server.boy,None)
+
+    for ball in balls:
+        game_world.add_collision_pair("Boy : Ball",None,ball)
+
 
 
     # notice to boy for his Background
