@@ -51,21 +51,39 @@ class TileBackground:
     def __init__(self):
         self.cw = get_canvas_width()
         self.ch = get_canvas_height()
-        self.w = 800 * 3
-        self.h = 600 * 3
+        self.width = 800 * 3
+        self.height = 600 * 3
 
         # fill here
-
+        self.tiles = [[load_image('cube%d%d.png' % (x, y)) for x in range(3)] for y in range(3)]
 
 
     def update(self):
         pass
 
     def draw(self):
-        self.window_left = clamp(0, int(server.boy.x) - self.cw // 2, self.w - self.cw - 1)
-        self.window_bottom = clamp(0, int(server.boy.y) - self.ch // 2, self.h - self.ch - 1)
+        self.window_left = clamp(0, int(server.boy.x) - self.cw // 2, self.width - self.cw - 1)
+        self.window_bottom = clamp(0, int(server.boy.y) - self.ch // 2, self.height - self.ch - 1)
 
         # fill here
+        tile_left = self.window_left // 800
+        tile_right = ( self.window_left + self.cw ) // 800
+        left_offset = self.window_left % 800
+
+
+        tile_bottom = self.window_bottom // 600
+        tile_top = ( self.window_bottom  + self.ch ) // 600
+        bottom_offset = self.window_bottom % 600
+
+
+        for ty in range(tile_bottom, tile_top + 1):
+            for tx in range(tile_left, tile_right + 1):
+                self.tiles[ty][tx].draw_to_origin(-left_offset+(tx - tile_left) * 800, -bottom_offset + (ty - tile_bottom) * 600)
+
+
+
+
+
         pass
 
 
