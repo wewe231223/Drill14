@@ -11,7 +11,7 @@ from boy import Boy
 from ball import Ball
 
 # fill here
-from background import TileBackground as Background
+from background import FixedBackground as Background
 
 
 
@@ -35,6 +35,7 @@ def init():
     server.boy = Boy()
 
     balls = [ Ball() for _ in range(100)]
+
     game_world.add_objects(balls,1)
     game_world.add_object(server.background,0)
     game_world.add_object(server.boy,1)
@@ -43,6 +44,7 @@ def init():
 
     for ball in balls:
         game_world.add_collision_pair("Boy : Ball",None,ball)
+        ball.set_background(server.background)
 
 
 
