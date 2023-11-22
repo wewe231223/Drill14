@@ -278,16 +278,26 @@ class Boy:
 
     def set_background(self, bg):
         # fill here
+        self.background = bg
+
+        # Set Boy Position in Center of Screen
+        self.x = bg.width // 2
+        self.y = bg.height // 2
+
         pass
 
     def update(self):
         self.state_machine.update()
+
 
     def handle_event(self, event):
         self.state_machine.handle_event(('INPUT', event))
 
     def draw(self):
         # fill here
+        sx, sy = self.x - self.background.window_left, self.y - self.background.window_bottom
+
+        self.image.clip_draw(int(self.frame) * 100, self.action * 100, 100, 100, sx, sy)
         pass
 
     def get_bb(self):
