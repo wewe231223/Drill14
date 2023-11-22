@@ -1,5 +1,6 @@
 import math
 
+import pico2d
 from pico2d import get_time, load_image, load_font, clamp, SDL_KEYDOWN, SDL_KEYUP, SDLK_SPACE, SDLK_LEFT, SDLK_RIGHT, \
     SDLK_UP, SDLK_DOWN, \
     draw_rectangle
