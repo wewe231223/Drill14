@@ -13,19 +13,25 @@ class Ball:
         self.y = y if y else random.randint(100, 924)
 
     def draw(self):
-        self.image.draw(self.x, self.y)
-        draw_rectangle(*self.get_bb())
+        sx, sy = self.x - self.background.window_left, self.y - self.background.window_bottom
+        self.image.draw(sx, sy)
 
     def update(self):
         pass
+
+    def set_background(self,bg):
+        self.background = bg
+
+
 
     def get_bb(self):
         return self.x - 10, self.y - 10, self.x + 10, self.y + 10
 
     def handle_collision(self, group, other):
         match group:
-            case 'boy:ball':
+            case 'Boy : Ball':
                 other.ball = self # 소년이 볼을 소유하도록.
+                game_world.remove_object(self)
                 pass
             case 'zombie:ball':
                 other.ball = self
