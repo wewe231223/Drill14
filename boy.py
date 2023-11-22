@@ -57,7 +57,7 @@ def time_out(e):
 
 # Boy Run Speed
 PIXEL_PER_METER = (10.0 / 0.3)  # 10 pixel 30 cm
-RUN_SPEED_KMPH = 20.0  # Km / Hour
+RUN_SPEED_KMPH = 40.0  # Km / Hour
 RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
 RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
 RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
@@ -255,6 +255,9 @@ class StateMachine:
 
         # fill here
 
+        self.boy.x = clamp(50, self.boy.x , self.boy.background.width  - 50.0)
+        self.boy.y = clamp(50, self.boy.y, self.boy.background.height - 50.0)
+
     def handle_event(self, e):
         for check_event, next_state in self.transitions[self.cur_state].items():
             if check_event(e):
@@ -288,6 +291,8 @@ class Boy:
 
     def update(self):
         self.state_machine.update()
+
+
 
 
     def handle_event(self, event):
