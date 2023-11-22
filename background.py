@@ -31,6 +31,8 @@ class FixedBackground:
 
     def update(self):
         # fill here
+
+        # Regulate value in fixed range
         self.window_left = pico2d.clamp(0,int(server.boy.x) - self.cw // 2, self.width - self.cw - 1)
         self.window_bottom = pico2d.clamp(0,int(server.boy.y) - self.ch // 2, self.height - self.ch - 1)
 

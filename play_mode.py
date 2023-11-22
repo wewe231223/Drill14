@@ -30,12 +30,16 @@ def handle_events():
 
 def init():
     # fill here
-    server.background = Background();
-    server.boy = Boy();
+    server.background = Background()
+    server.boy = Boy()
 
     game_world.add_object(server.background,0)
     game_world.add_object(server.boy,1)
-    
+
+
+    # notice to boy for his Background
+    server.boy.set_background(server.background)
+
 
 def finish():
     game_world.clear()
